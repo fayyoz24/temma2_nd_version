@@ -1,0 +1,1 @@
+change type to typ from the vacancy model and views
