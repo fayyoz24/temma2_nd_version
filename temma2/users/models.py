@@ -36,7 +36,9 @@ class CustomUser(AbstractBaseUser):
     date_joined = models.DateTimeField(auto_now_add=True)
 
     objects = CustomUserManager()
-
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = "phone_number"  # login with phone
     REQUIRED_FIELDS = ["full_name", "region"]

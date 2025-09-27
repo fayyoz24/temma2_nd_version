@@ -21,3 +21,15 @@ class RegisterUserView(APIView):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class RegionListView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        from .serializers import RegionSerializer
+        from .models import Region
+
+        regions = Region.objects.all()
+        serializer = RegionSerializer(regions, many=True)
+        return Response(serializer.data)
