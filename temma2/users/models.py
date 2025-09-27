@@ -45,3 +45,9 @@ class CustomUser(AbstractBaseUser):
 
     def __str__(self):
         return f"{self.full_name}-({self.role})"
+
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
+
+    def has_module_perms(self, app_label):
+        return self.is_superuser
