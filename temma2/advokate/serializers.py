@@ -9,9 +9,10 @@ class AdvokateRequestSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "user",
+            "user_full_name",
             "problem",
             "email",
             "phone_number",
             "created_at",
         ]
-        read_only_fields = ["id", "created_at"]
+        read_only_fields = ["id", "user", "created_at"]

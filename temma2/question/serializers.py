@@ -4,12 +4,6 @@ from .models import(
     Category,
     Question,
     Answer,#Student,
-    Messages,
-    MessageRoom,
-    MentorForStudent,
-    MentorForScholier,
-    University, Study, Sector,
-    MentorMatchStudent, MentorMatchScholier,
     #MentorMatchScholierTest, MentorForScholierTest
 )
 from users.serializers import UserSerializer
@@ -182,71 +176,6 @@ class QuestionUpdateSerializer(ModelSerializer):
         model=Question
         fields = '__all__'
 
-# chatting app
-class MessageSerializer(ModelSerializer):
-    class Meta:
-        model = Messages
-        fields = "__all__"
-
-    def create(self, validated_data):
-        # Add user_id to the validated data if a user is authenticated
-        if self.context['request'].user.is_authenticated:
-            if self.context['request'].method=='POST':
-                validated_data['sender'] = self.context['request'].user
-        return super().create(validated_data)
-    
-class MessageRoomSerializer(ModelSerializer):
-    # categories = CategoryModelSerializer(many=True, read_only=True)
-    # updated_by = StringRelatedField(read_only=True)
-    class Meta:
-        model=MessageRoom
-        fields = '__all__'
-
-# mentor match
-       
-class MentorForStudentSerializer(ModelSerializer):
-
-    class Meta:
-        model=MentorForStudent
-        fields = '__all__'
-
-class MentorForScholierSerializer(ModelSerializer):
-
-    class Meta:
-        model=MentorForScholier
-        fields = '__all__'
-
-class MentorMatchStudentSerializer(ModelSerializer):
-
-    class Meta:
-        model=MentorMatchStudent
-        fields = '__all__'
-        
-class MentorMatchScholierSerializer(ModelSerializer):
-
-    class Meta:
-        model=MentorMatchScholier
-        fields = '__all__'
-        
-
-class UniversitySerializer(ModelSerializer):
-
-    class Meta:
-        model=University
-        fields = '__all__'
-
-class StudySerializer(ModelSerializer):
-    
-    university = UniversitySerializer()
-    class Meta:
-        model=Study
-        fields = ['id','university', 'name']
-
-class SectorSerializer(ModelSerializer):
-
-    class Meta:
-        model = Sector
-        fields="__all__"
 class QuestionUpdateCategSerializer(Serializer):
 
     categ_name = serializers.CharField()
@@ -257,15 +186,4 @@ class QuestionCategoryResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ['id', 'title', 'categories']
-# class MentorForScholierTestSerializer(ModelSerializer):
 
-#     class Meta:
-#         model=MentorForScholierTest
-#         fields = '__all__'
-
-        
-# class MentorMatchScholierTestSerializer(ModelSerializer):
-
-#     class Meta:
-#         model=MentorMatchScholierTest
-#         fields = '__all__'

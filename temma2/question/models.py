@@ -76,101 +76,101 @@ class Answer(models.Model):
         return self.read_by.filter(id=user.id).exists()
 
 # chatting
-class Messages(models.Model):
-    room=models.ForeignKey("MessageRoom", on_delete=models.CASCADE, to_field='cookie', null=True)
-    related_to=models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    sender=models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    text = models.CharField(max_length=1000)
-    is_read = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
+# class Messages(models.Model):
+#     room=models.ForeignKey("MessageRoom", on_delete=models.CASCADE, to_field='cookie', null=True)
+#     related_to=models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+#     sender=models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+#     text = models.CharField(max_length=1000)
+#     is_read = models.BooleanField(default=False)
+#     date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return self.text
+#     def __str__(self):
+#         return self.text
 
-class MessageRoom(models.Model):
-    cookie=models.CharField(max_length=100, unique=True)
+# class MessageRoom(models.Model):
+#     cookie=models.CharField(max_length=100, unique=True)
 
-    # def __str__(self):
-    #     return self.id
+#     # def __str__(self):
+#     #     return self.id
 
-BACHELOR = 'B'
-MASTER = 'M'
-UNDEFINED = 'U'
-UNIVERSITY_DEGREE_CHOICES=[(UNDEFINED, 'Undefined'),
-                     (BACHELOR, 'Bachelor'),
-                     (MASTER, 'Master')]
+# BACHELOR = 'B'
+# MASTER = 'M'
+# UNDEFINED = 'U'
+# UNIVERSITY_DEGREE_CHOICES=[(UNDEFINED, 'Undefined'),
+#                      (BACHELOR, 'Bachelor'),
+#                      (MASTER, 'Master')]
 
-class University(models.Model):
-    degree = models.CharField(max_length=1, choices=UNIVERSITY_DEGREE_CHOICES, default='U')
-    name = models.CharField(max_length=200)
-    logo = models.CharField(max_length=200, blank=True, null=True)
+# class University(models.Model):
+#     degree = models.CharField(max_length=1, choices=UNIVERSITY_DEGREE_CHOICES, default='U')
+#     name = models.CharField(max_length=200)
+#     logo = models.CharField(max_length=200, blank=True, null=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-class Study(models.Model):
-    degree = models.CharField(max_length=1, choices=UNIVERSITY_DEGREE_CHOICES, default='M')
-    university=models.ForeignKey(University, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=150)
+# class Study(models.Model):
+#     degree = models.CharField(max_length=1, choices=UNIVERSITY_DEGREE_CHOICES, default='M')
+#     university=models.ForeignKey(University, on_delete=models.CASCADE, null=True)
+#     name = models.CharField(max_length=150)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-class MentorMatchStudent(models.Model):
+# class MentorMatchStudent(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    job_title=models.ForeignKey("JobTitle", on_delete=models.CASCADE, null=True)
-    email = models.EmailField()
-    is_replied=models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+#     job_title=models.ForeignKey("JobTitle", on_delete=models.CASCADE, null=True)
+#     email = models.EmailField()
+#     is_replied=models.BooleanField(default=False)
+#     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return self.user.username
+#     def __str__(self):
+#         return self.user.username
 
-class MentorMatchScholier(models.Model):
+# class MentorMatchScholier(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    university=models.ForeignKey(University, on_delete=models.CASCADE, null=True)
-    study = models.ForeignKey(Study, on_delete=models.CASCADE, null=True)
-    email = models.EmailField()
-    is_replied=models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+#     university=models.ForeignKey(University, on_delete=models.CASCADE, null=True)
+#     study = models.ForeignKey(Study, on_delete=models.CASCADE, null=True)
+#     email = models.EmailField()
+#     is_replied=models.BooleanField(default=False)
+#     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-class Sector(models.Model):
-    sector=models.CharField(max_length=150)
+# class Sector(models.Model):
+#     sector=models.CharField(max_length=150)
 
-    def __str__(self):
-        return self.sector
+#     def __str__(self):
+#         return self.sector
 
-class JobTitle(models.Model):
+# class JobTitle(models.Model):
 
-    job_title = models.CharField(max_length=150)
-    sector = models.ForeignKey(Sector, on_delete=models.CASCADE, null=True, blank=True)
+#     job_title = models.CharField(max_length=150)
+#     sector = models.ForeignKey(Sector, on_delete=models.CASCADE, null=True, blank=True)
 
-    def __str__(self):
-        return self.job_title
+#     def __str__(self):
+#         return self.job_title
     
-class MentorForStudent(models.Model):
+# class MentorForStudent(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=200)
-    email = models.EmailField()
-    linkedin_link=models.CharField(max_length=200, null=True, blank=True)
-    job_title = models.ForeignKey(JobTitle, on_delete=models.CASCADE, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+#     name = models.CharField(max_length=200)
+#     email = models.EmailField()
+#     linkedin_link=models.CharField(max_length=200, null=True, blank=True)
+#     job_title = models.ForeignKey(JobTitle, on_delete=models.CASCADE, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
-class MentorForScholier(models.Model):
+# class MentorForScholier(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
-    linkedin_link = models.CharField(max_length=200, null=True, blank=True)
-    study = models.ForeignKey(Study, on_delete=models.CASCADE, null=True)
-    university = models.ForeignKey(University, on_delete=models.CASCADE, null=True)
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+#     name = models.CharField(max_length=100)
+#     email = models.EmailField()
+#     linkedin_link = models.CharField(max_length=200, null=True, blank=True)
+#     study = models.ForeignKey(Study, on_delete=models.CASCADE, null=True)
+#     university = models.ForeignKey(University, on_delete=models.CASCADE, null=True)
+#     created_at = models.DateTimeField(auto_now_add=True, null=True)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name

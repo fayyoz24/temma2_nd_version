@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from .managers import CustomUserManager
 # Create your models here.
 class Region(models.Model):
     name = models.CharField(max_length=100)
@@ -33,6 +34,10 @@ class CustomUser(AbstractBaseUser):
     education_level = models.CharField(max_length=10, choices=EDUCATION_CHOICES, null=True, blank=True)
     role = models.CharField(max_length=10, choices=ROLE_CHOICES)
     date_joined = models.DateTimeField(auto_now_add=True)
+
+    objects = CustomUserManager()
+
+
     USERNAME_FIELD = "phone_number"  # login with phone
     REQUIRED_FIELDS = ["full_name", "region"]
 

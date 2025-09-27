@@ -1,5 +1,5 @@
 from django.core.mail import EmailMessage
-from temma.settings import EMAIL_HOST_USER
+from temma2.settings import EMAIL_HOST_USER
 import jwt
 from datetime import datetime, timedelta
 from decouple import config
