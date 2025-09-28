@@ -1,20 +1,17 @@
 
 DEBUG=True
-SECRET_KEY=django-insecure-$zcayc)avo@$o(z_$e=4clr-&$ng^p-w_i5)o=*o%^79bioc=x
-# django-insecure-ib9n1%jq%9=b_xu=yx!(!9#9g+9v9sk1_vw6q8#dc#&1^%e0=^
-          
+SECRET_KEY=
 
-PASSWORD_USER=A!2Sa@23h-9$
-GOOGLE_ID=638120310022-e66gabge1dggjjf6skldfh4opbivng9f.apps.googleusercontent.com
-OPENAI_API_KEY=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
+PASSWORD_USER=
+GOOGLE_ID=
+OPENAI_API_KEY=
 
-EMAIL_HOST_USER=benco.discover@gmail.com
-EMAIL_HOST_PASSWORD=qnkdyibembstxehd
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
 
 ALLOWED_HOST=http://127.0.0.1:8000
 
-PATH_VECTORIZER=./chartype/vectorizer_3rd.pickle
-PATH_MODEL=./chartype/XGBoost_2nd_attempt_with__60k_with_new_data.joblib
+PATH_VECTORIZER=
+PATH_MODEL=
 
 PASSWORD_RESET_URL = http://127.0.0.1:8000/
-#https://personality-report.vercel.app/password-update/
