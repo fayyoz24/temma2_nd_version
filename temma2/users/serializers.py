@@ -54,9 +54,6 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
-
-
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     username_field = "phone_number"
 
@@ -77,7 +74,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             "role": user.role,
         }
         return data
-
 
 
 class RegionSerializer(serializers.ModelSerializer):
