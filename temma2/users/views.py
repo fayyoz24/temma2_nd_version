@@ -7,6 +7,7 @@ from .serializers import UserSerializer, CustomTokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from rest_framework_simplejwt.tokens import RefreshToken
+from .utils import twilio_whatsapp
 
 class RegisterUserView(APIView):
     permission_classes = [permissions.AllowAny]
@@ -14,6 +15,15 @@ class RegisterUserView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
+            phone_number = serializer.validated_data.get("phone_number")
+            try:
+                # Send WhatsApp message using Twilio
+                twilio_whatsapp(phone_number)
+            except Exception as e:
+                return Response(
+                    {"detail": f"Failed to send WhatsApp message, please check your number: {str(e)}"},
+                    status=400,
+                )
             user = serializer.save()
 
             # generate tokens for the new user
