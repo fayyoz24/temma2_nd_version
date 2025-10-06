@@ -21,7 +21,7 @@ class RegisterUserView(APIView):
                 twilio_whatsapp(phone_number)
             except Exception as e:
                 return Response(
-                    {"detail": f"Failed to send WhatsApp message, please check your number: {str(e)}"},
+                    {"detail": f"Failed to send WhatsApp message, please check your number!"},
                     status=400,
                 )
             user = serializer.save()
