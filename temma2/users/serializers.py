@@ -33,12 +33,24 @@ class UserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"password": "Passwords do not match"})
         return data
 
+    # def create(self, validated_data):
+    #     validated_data.pop("re_password")
+    #     password = validated_data.pop("password")
+
+    #     user = CustomUser(**validated_data)
+    #     user.set_password(password)  # hash password
+    #     user.save()
+    #     return user
     def create(self, validated_data):
         validated_data.pop("re_password")
         password = validated_data.pop("password")
 
+        # Convert empty email to None
+        if not validated_data.get("email"):
+            validated_data["email"] = None
+
         user = CustomUser(**validated_data)
-        user.set_password(password)  # hash password
+        user.set_password(password)
         user.save()
         return user
 
