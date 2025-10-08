@@ -66,5 +66,5 @@ urlpatterns = [
     path("api/users/", include("users.urls")),
     path("api/advokate/", include("advokate.urls")),
     path("api/question/", include("question.urls")),
-    path("api/announcement/", include("announcement.urls")),
+    path("api/news/", include("announcement.urls")),
 ]
