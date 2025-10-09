@@ -44,7 +44,8 @@ class CustomUser(AbstractBaseUser):
     REQUIRED_FIELDS = ["full_name", "region"]
 
     def __str__(self):
-        return f"{self.full_name}-({self.role})"
+        return f"{self.full_name or 'Unnamed'} ({self.role or 'No role'})"
+
 
     def has_perm(self, perm, obj=None):
         return self.is_superuser
