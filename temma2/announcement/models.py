@@ -102,5 +102,5 @@ class UserNewsView(models.Model):
     #     unique_together = ['user', 'article']
 
     def __str__(self):
-        return self.user.username + " " + self.article.original_title
+        self.article.original_title
     
