@@ -18,7 +18,7 @@ def twilio_whatsapp(receiver):
 
     data = {
     "To": f"whatsapp:{receiver}",  # recipient
-    "From": "whatsapp:",  # your approved Twilio WhatsApp sender
+    "From": f"whatsapp:{FROM}",  # your approved Twilio WhatsApp sender
     "ContentSid":f"{CONTENT_SID}",  # your template SID
     }
 
