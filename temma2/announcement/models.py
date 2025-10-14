@@ -98,9 +98,6 @@ class UserNewsView(models.Model):
     article = models.ForeignKey(NewsArticle, on_delete=models.CASCADE)
     viewed_at = models.DateTimeField(auto_now_add=True)
 
-    # class Meta:
-    #     unique_together = ['user', 'article']
-
     def __str__(self):
         self.article.original_title
     

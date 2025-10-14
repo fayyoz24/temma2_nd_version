@@ -54,6 +54,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class RegionListView(APIView):
+    authentication_classes = []
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):

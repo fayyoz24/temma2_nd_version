@@ -10,4 +10,6 @@ class AdvokateRequest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Request by {self.user.full_name} on {self.problem[:30]}..."
+        user_name = self.user.full_name if self.user and self.user.full_name else "Unnamed user"
+        problem_preview = self.problem[:30].replace("\n", " ")  # tozalash uchun
+        return f"Request by {user_name} on {problem_preview}..."
