@@ -10,19 +10,17 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
-    
+
 class Language(models.Model):
     name = models.CharField(max_length=50)
     code = models.CharField(max_length=10)  # e.g., 'en', 'es', 'fr'
 
     def __str__(self):
         return self.name 
-      
+
 class NewsArticle(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    # title = models.CharField(max_length=200)
-    # content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True) 
     scheduled_for = models.DateTimeField(null=True, blank=True)  # When the article should become visible
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
@@ -47,7 +45,6 @@ class NewsArticle(models.Model):
     
     def __str__(self):
         return self.author.name + " + " + self.original_title[:50]
-
 
     def get_version(self, language_code, difficulty='medium'):
         try:
@@ -99,5 +96,7 @@ class UserNewsView(models.Model):
     viewed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        self.article.original_title
+        article_title = getattr(self.article, "original_title", None) or "Untitled Article"
+        user_name = getattr(self.user, "full_name", None) or str(self.user)
+        return f"{user_name} viewed '{article_title}'"
     
