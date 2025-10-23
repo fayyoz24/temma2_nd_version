@@ -22,7 +22,8 @@ from drf_yasg import openapi
 
 from django.contrib import admin
 from django.urls import path, include
-
+from users.views import CustomTokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
 from rest_framework import permissions
 
 schema_view = get_schema_view(
@@ -67,4 +68,7 @@ urlpatterns = [
     path("api/advokate/", include("advokate.urls")),
     path("api/question/", include("question.urls")),
     path("api/news/", include("announcement.urls")),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
