@@ -451,3 +451,17 @@ class NewsArticleDetailView(RetrieveAPIView):
         # Pass request in the context explicitly
         serializer = self.get_serializer(instance, context={'request': request})
         return Response(serializer.data)
+
+class ToggleUserNewsView(APIView):
+    def post(self, request, article_id):
+        user = request.user
+        article = get_object_or_404(NewsArticle, id=article_id)
+
+        obj = UserNewsView.objects.filter(user=user, article=article).first()
+
+        if obj:
+            obj.delete()
+            return Response({"detail": "View removed."}, status=status.HTTP_200_OK)
+        else:
+            UserNewsView.objects.create(user=user, article=article)
+            return Response({"detail": "View added."}, status=status.HTTP_201_CREATED)

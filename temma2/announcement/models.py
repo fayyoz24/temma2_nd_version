@@ -99,4 +99,4 @@ class UserNewsView(models.Model):
         article_title = getattr(self.article, "original_title", None) or "Untitled Article"
         user_name = getattr(self.user, "full_name", None) or str(self.user)
         return f"{user_name} viewed '{article_title}'"
-    
+
