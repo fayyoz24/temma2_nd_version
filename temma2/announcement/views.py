@@ -410,10 +410,10 @@ class NewsArticleListView(APIView):
             'Dienst Toeslagen': 6,
             'Belastingdienst': 5,
             'Nibud': 2,
-            'Landelijk Centrum Studiekeuze': 7,
+            # 'Landelijk Centrum Studiekeuze': 7,
             'Studielink': 4,
             'Mln OCW': 3,
-            "ECIO - Expertisecentrum Inclusief Onderwijs": 8
+            "ECIO - Expertisecentrum Inclusief Onderwijs": 7
         }
         
         # Sort authors based on the custom order
