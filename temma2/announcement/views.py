@@ -453,7 +453,7 @@ class NewsArticleDetailView(RetrieveAPIView):
         return Response(serializer.data)
 
 class ToggleUserNewsView(APIView):
-    def post(self, request, article_id):
+    def get(self, request, article_id):
         user = request.user
         article = get_object_or_404(NewsArticle, id=article_id)
 
