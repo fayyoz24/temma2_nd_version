@@ -66,7 +66,7 @@ class RegionListView(APIView):
         return Response(serializer.data)
 
 class DeleteAccountView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def delete(self, request):
         user = request.user
