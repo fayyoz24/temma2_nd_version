@@ -65,3 +65,21 @@ class RegionListView(APIView):
         serializer = RegionSerializer(regions, many=True)
         return Response(serializer.data)
 
+class DeleteAccountView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+
+        # prevent deleting superuser accounts
+        if user.is_superuser:
+            return Response(
+                {"detail": "Superuser accounts cannot be deleted."},
+                status=403,
+            )
+
+        user.delete()
+        return Response(
+            {"detail": "Your account has been deleted successfully."},
+            status=204
+        )
