@@ -114,13 +114,13 @@ class NewsArticleListView(APIView):
 
         custom_order = {
             'DUO': 1,
-            'Dienst Toeslagen': 6,
-            'Belastingdienst': 5,
+            'Dienst Toeslagen': 7,
+            'Belastingdienst': 6,
             'Nibud': 2,
             # 'Landelijk Centrum Studiekeuze': 7,
-            'Studielink': 4,
-            'Mln OCW': 3,
-            "ECIO - Expertisecentrum Inclusief Onderwijs": 7
+            'Studielink': 5,
+            'Mln OCW': 4,
+            "ECIO": 3
         }
         
         # Sort authors based on the custom order
