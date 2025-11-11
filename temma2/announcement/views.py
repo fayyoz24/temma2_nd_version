@@ -116,11 +116,11 @@ class NewsArticleListView(APIView):
             'DUO': 1,
             'Dienst Toeslagen': 7,
             'Belastingdienst': 6,
-            'Nibud': 2,
+            'Nibud': 3,
             # 'Landelijk Centrum Studiekeuze': 7,
             'Studielink': 5,
             'Mln OCW': 4,
-            "ECIO": 3
+            "ECIO": 2
         }
         
         # Sort authors based on the custom order
