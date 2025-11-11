@@ -111,7 +111,6 @@ class NewsArticleListView(APIView):
             for author in authors_with_unseen
         ]
 
-
         custom_order = {
             'DUO': 1,
             'Dienst Toeslagen': 7,
