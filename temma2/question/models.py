@@ -35,8 +35,8 @@ class Category(models.Model):
 
 class Question(models.Model):
     # Your existing fields remain the same
-    user = models.ForeignKey(User, related_name='quest_sender', on_delete=models.DO_NOTHING, null=True, blank=True)
-    updated_by = models.ForeignKey(User, related_name="question_updated_by", on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, related_name='quest_sender', on_delete=models.SET_NULL, null=True, blank=True)
+    updated_by = models.ForeignKey(User, related_name="question_updated_by", on_delete=models.SET_NULL, null=True)
     created_at = models.DateField(default=datetime.date.today)
     last_updated = models.DateField(default=datetime.date.today)
     categories = models.ManyToManyField(Category, related_name="questions")

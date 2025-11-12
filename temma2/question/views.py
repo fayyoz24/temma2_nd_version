@@ -193,6 +193,14 @@ class QuestionUpdateListView(APIView):
         return Response(serializer.data, status=200)
 
 
+class AllApprovedQuestionsView(generics.ListAPIView):
+    serializer_class = QuestionAllGetSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Question.objects.filter(is_enabled=True).order_by('-id')
+
+
 class MyQuestionsView(generics.ListAPIView):
     serializer_class = QuestionGetSerializer
     permission_classes = [IsAuthenticated]

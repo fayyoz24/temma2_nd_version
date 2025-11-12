@@ -12,7 +12,8 @@ from .views import(
     HistoryView, 
     QuestionsView,
     QuestUpdateCreateCategView,
-    MyQuestionsView
+    MyQuestionsView,
+    AllApprovedQuestionsView
 )
 
 urlpatterns = [
@@ -30,4 +31,5 @@ urlpatterns = [
     path('quest-update-list', QuestionUpdateListView.as_view(), name='quest-update-list'),
     path('questions-history', QuestionUpdateView.as_view(), name='questions-history'),
     path('update-quest/<int:pk>', update_quest, name='update_quest'),
+    path('all-approved-questions', AllApprovedQuestionsView.as_view(), name='all-approved-questions'),
 ]
