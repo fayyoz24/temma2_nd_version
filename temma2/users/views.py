@@ -27,14 +27,14 @@ class RegisterUserView(APIView):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             phone_number = serializer.validated_data.get("phone_number")
-            # try:
-            #     # Send WhatsApp message using Twilio
-            #     twilio_whatsapp(phone_number)
-            # except Exception as e:
-            #     return Response(
-            #         {"detail": f"Failed to send WhatsApp message, please check your number!"},
-            #         status=400,
-            #     )
+            try:
+                # Send WhatsApp message using Twilio
+                twilio_whatsapp(phone_number)
+            except Exception as e:
+                return Response(
+                    {"detail": f"Failed to send WhatsApp message, please check your number!"},
+                    status=400,
+                )
             user = serializer.save()
 
             # generate tokens for the new user
