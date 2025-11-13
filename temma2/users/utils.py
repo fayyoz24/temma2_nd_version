@@ -5,6 +5,10 @@ import json
 from decouple import config
 import requests
 from requests.auth import HTTPBasicAuth
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.utils.html import strip_tags
+from temma2.settings import EMAIL_HOST_USER
 # Find your Account SID and Auth Token at twilio.com/console
 # and set the environment variables. See http://twil.io/secure
 ACCOUNT_SID = config("ACCOUNT_SID")
@@ -27,7 +31,22 @@ def twilio_whatsapp(receiver):
     return response.text
     # print(response.status_code)
 
-
+def email_by_template(subject, ctx, template_path, to=[]):
+    # Load the HTML template
+    html_template = get_template(template_path)
+    
+    # Populate the template with data from the context dictionary
+    html_content = html_template.render(ctx)
+    
+    # Create the email message
+    email = EmailMultiAlternatives(
+        subject=subject,
+        body=strip_tags(html_content),  # Use the plain text version as fallback
+        from_email=EMAIL_HOST_USER,
+        to=to
+    )
+    email.attach_alternative(html_content, "text/html")
+    email.send()
 # print(response.text)
 
 
