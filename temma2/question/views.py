@@ -194,7 +194,7 @@ class QuestionUpdateListView(APIView):
 
 
 class AllApprovedQuestionsView(generics.ListAPIView):
-    serializer_class = QuestionAllGetSerializer
+    serializer_class = QuestionGetSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
