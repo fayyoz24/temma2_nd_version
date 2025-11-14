@@ -68,6 +68,7 @@ urlpatterns = [
     path("api/advokate/", include("advokate.urls")),
     path("api/question/", include("question.urls")),
     path("api/news/", include("announcement.urls")),
+    path("api/questionaree/", include("questionaree.urls")),
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
 

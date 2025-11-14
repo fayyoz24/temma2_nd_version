@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'announcement',
     'question',
     'advokate',
+    'questionaree',
 ]
 
 

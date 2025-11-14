@@ -1,0 +1,42 @@
+[
+  {
+    "question": "Je was een periode ziek en miste daardoor veel lessen. Uitleg: Je stond wel ingeschreven en betaalde lesgeld, maar kon door klachten niet meedoen. Voorbeeldzin:",
+    "answer": "In [PERIODE] was ik door gezondheidsklachten langere tijd niet op school. Daardoor heb ik weinig gebruik kunnen maken van het onderwijs waarvoor ik lesgeld betaalde. Daarom vraag ik om (gedeeltelijke) teruggave/aanpassing."
+  },
+  {
+    "question": "Je had een ziekenhuisopname in het lesjaar. Uitleg: Door opname en herstel was school geen optie. Voorbeeldzin:",
+    "answer": "Tijdens dit lesjaar ben ik in [MAAND JAAR] opgenomen geweest in het ziekenhuis. Door de opname en het herstel kon ik in die periode geen onderwijs volgen."
+  },
+  {
+    "question": "Psychische klachten waardoor je tijdelijk stopte of weinig deed. Uitleg: Je was bezig met je herstel en de studie stond op een laag pitje. Voorbeeldzin:",
+    "answer": "In [PERIODE] had ik psychische klachten waarvoor ik in behandeling was. In die tijd heb ik nauwelijks onderwijs kunnen volgen, terwijl ik wel lesgeld betaalde. Daarom vraag ik om hier opnieuw naar te kijken."
+  },
+  {
+    "question": "Zwangerschap met invloed op je aanwezigheid. Uitleg: Je kon door zwangerschap niet alles volgen wat je had gepland. Voorbeeldzin:",
+    "answer": "In verband met mijn zwangerschap in [JAAR] heb ik een deel van de lessen en examens niet kunnen volgen. Daardoor heb ik maar beperkt gebruikgemaakt van het onderwijs in dit lesjaar."
+  },
+  {
+    "question": "Gestart met de opleiding, maar al snel moeten stoppen. Uitleg: Je stond wel ingeschreven en betaalde, maar door omstandigheden moest je snel stoppen. Voorbeeldzin:",
+    "answer": "Ik ben in [MAAND JAAR] gestart met mijn opleiding, maar moest door omstandigheden (gezondheid/privé) in [MAAND JAAR] al stoppen. Omdat ik maar kort onderwijs heb kunnen volgen, vraag ik (gedeeltelijke) teruggave van het lesgeld."
+  },
+  {
+    "question": "Advies tot rust (bijvoorbeeld door arts/verloskundige). Uitleg: Je moest het rustiger aan doen en kon daardoor niet naar school. Voorbeeldzin:",
+    "answer": "In [PERIODE] heb ik op advies van mijn arts/verloskundige rust moeten nemen. Daardoor kon ik tijdelijk geen lessen volgen. Ik heb in die periode weinig gehad aan het onderwijs waarvoor ik lesgeld betaalde."
+  },
+  {
+    "question": "Langer herstel na bevalling of andere ingreep. Uitleg: Terugkomen kostte meer tijd dan gedacht. Voorbeeldzin:",
+    "answer": "Na [bevalling/medische ingreep] in [MAAND JAAR] had ik een langere herstelperiode nodig. Hierdoor heb ik een groot deel van het lesjaar geen onderwijs kunnen volgen."
+  },
+  {
+    "question": "Langdurige klachten waardoor je nauwelijks naar school ging. Uitleg: Bijvoorbeeld vermoeidheid of concentratieproblemen. Voorbeeldzin:",
+    "answer": "Sinds [MAAND JAAR] heb ik langdurige klachten (zoals vermoeidheid en concentratieproblemen). Daardoor kon ik een groot deel van dit lesjaar niet of nauwelijks naar school."
+  },
+  {
+    "question": "Situatie thuis of bij naasten met veel zorg/regelwerk. Uitleg: Je had tijdelijk veel aan je hoofd door iemand in je omgeving. Voorbeeldzin:",
+    "answer": "In [PERIODE] speelde er in mijn gezin/familie een situatie waardoor ik vaak zorg moest verlenen of veel moest regelen. Hierdoor ben ik weinig op school geweest en heb ik beperkt gebruikgemaakt van het onderwijs."
+  },
+  {
+    "question": "Meerdere dingen tegelijk waardoor school naar de achtergrond schoof. Uitleg: Een combinatie van gezondheid, privé en andere zaken. Voorbeeldzin:",
+    "answer": "In dit lesjaar hadden verschillende gebeurtenissen (bijvoorbeeld gezondheid, veranderingen thuis) samen veel invloed op mij. Hierdoor heb ik het onderwijs nauwelijks kunnen volgen. Daarom vraag ik om het lesgeld voor deze periode opnieuw te bekijken."
+  }
+]
