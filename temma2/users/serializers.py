@@ -73,6 +73,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             "phone_number": user.phone_number,
             "email": user.email,
             "role": user.role,
+            "user_type": user.user_type,
         }
         return data
 

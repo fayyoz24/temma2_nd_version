@@ -54,6 +54,7 @@ class RegisterUserView(APIView):
                         "phone_number": user.phone_number,
                         "email": user.email,
                         "role": user.role,
+                        "user_type": user.user_type,
                     },
                 },
                 status=status.HTTP_201_CREATED,
