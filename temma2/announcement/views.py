@@ -22,7 +22,9 @@ from rest_framework import generics
 from django.db.models.functions import Coalesce
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-    
+from decouple import config
+
+
 class NewsArticleByAuthorView(APIView):
     def get(self, request, pk):
         author = Author.objects.get(id=pk)
@@ -51,6 +53,54 @@ class LanguageListView(ListAPIView):
 class FilterDataBasedOnLevelView(APIView):
     pass
 
+TEMMA_AUTHOR_IDS = config("TEMMA_AUTHOR_IDS", cast=lambda v: [int(i) for i in v.strip("[]").split(",")])
+now = timezone.now()
+
+def get_temma_data(user):
+
+    # 1️⃣ Get all unseen + published articles for this user
+    unseen_articles = NewsArticle.objects.filter(
+        scheduled_for__lte=now
+    ).exclude(
+        id__in=UserNewsView.objects.filter(user=user)
+        .values_list('article_id', flat=True)
+    )
+
+    # 2️⃣ Count unseen articles per TEMMA author
+    temma_authors_qs = (
+        unseen_articles
+        .filter(author_id__in=TEMMA_AUTHOR_IDS)
+        .values(
+            'author__id',
+            'author__name',
+            'author__prof_pic'
+        )
+        .annotate(unseen_article_num=Count('id'))
+    )
+
+    # 3️⃣ Build response structure
+    unseen_article_for_each = [
+        {
+            "id": a['author__id'],
+            "name": a['author__name'],
+            "prof_pic": a['author__prof_pic'],
+            "unseen_article_num": a['unseen_article_num']
+        }
+        for a in temma_authors_qs
+    ]
+
+    all_unseen_count_for_three = sum(
+        a['unseen_article_num'] for a in unseen_article_for_each
+    )
+
+    temma_data = {
+        "temma_authors": TEMMA_AUTHOR_IDS,
+        "all_unseen_count": all_unseen_count_for_three,
+        "unseen_article_for_each": unseen_article_for_each
+    }
+
+    return temma_data
+
 class NewsArticleListView(APIView):
     """
     Provides a list of articles separated into seen and unseen for regular users,
@@ -62,7 +112,7 @@ class NewsArticleListView(APIView):
         user = request.user
 
         # Annotate is_seen for articles based on UserNewsView
-        queryset = NewsArticle.objects.annotate(
+        queryset = NewsArticle.objects.exclude(id__in=TEMMA_AUTHOR_IDS).annotate(
             is_seen=Exists(
                 UserNewsView.objects.filter(
                     user=user,
@@ -75,7 +125,7 @@ class NewsArticleListView(APIView):
 
         # Get all authors and their unseen article counts
         authors_with_unseen = (
-            Author.objects.annotate(
+            Author.objects.exclude(id__in=TEMMA_AUTHOR_IDS).annotate(
                 unseen_article_num=Count(
                     'newsarticle',
                     filter=Q(
@@ -124,10 +174,12 @@ class NewsArticleListView(APIView):
         
         # Sort authors based on the custom order
         authors_data.sort(key=lambda x: custom_order.get(x['name'], 999))
+        temma_data = get_temma_data(user)
 
         return Response({
             "all_unseen_num": unseen_articles.count(),
-            "authors": authors_data
+            "authors": authors_data,
+            "temma_data": temma_data
         })
 
 class NewsArticleDetailView(RetrieveAPIView):
@@ -157,7 +209,6 @@ class NewsArticleDetailView(RetrieveAPIView):
         # Pass request in the context explicitly
         serializer = self.get_serializer(instance, context={'request': request})
         return Response(serializer.data)
-
 
 
 class ToggleUserNewsView(APIView):

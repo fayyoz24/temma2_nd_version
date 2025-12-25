@@ -29,7 +29,7 @@ class NewsArticle(models.Model):
     original_language = models.ForeignKey(
         Language,
         on_delete=models.PROTECT,
-        related_name='original_articles',null=True, blank=True
+        related_name='original_articles', null=True, blank=True
     )
     original_title = models.CharField(max_length=200)
     original_content = models.TextField()
