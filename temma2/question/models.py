@@ -4,6 +4,7 @@ import datetime
 # Create your models here.
 
 
+
 LAWYER = 'L'
 BOOKIE = 'B'
 MENTAL_COACH='M'
