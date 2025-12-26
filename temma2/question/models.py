@@ -3,6 +3,7 @@ from users.models import CustomUser as User
 import datetime
 # Create your models here.
 
+
 LAWYER = 'L'
 BOOKIE = 'B'
 MENTAL_COACH='M'

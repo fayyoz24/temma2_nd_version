@@ -8,7 +8,6 @@ from .models import(
 )
 from users.serializers import UserSerializer
 
-
 class CategoryCreateSerializer(ModelSerializer):
     class Meta:
         model = Category
